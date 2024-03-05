@@ -16,3 +16,18 @@ Content-Type: application/json
 {
     "description": "Clean Garage"
 }
+
+###
+
+POST {{TodosApi_HostAddress}}/todos
+Accept: application/json
+Content-Type: application/json
+
+{
+    "description": "Eat Lunch"
+}
+
+###
+
+GET {{TodosApi_HostAddress}}/todos
+Accept: application/json
