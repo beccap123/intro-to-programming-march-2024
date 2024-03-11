@@ -1,12 +1,13 @@
-﻿
+﻿using NSubstitute;
+
 namespace StringCalculator.Tests;
 public class Part1Tests
 {
+    private Calculator calculator = new(Substitute.For<ILogger>(), Substitute.For<IWebService>());
 
     [Fact]
     public void EmptyStringReturnsZero()
     {
-        var calculator = new Calculator();
         var result = calculator.Add("");
         Assert.Equal(0, result);
     }
@@ -16,7 +17,6 @@ public class Part1Tests
     [InlineData("300")]
     public void CanReturnOneNumber(string oneNumber)
     {
-        var calculator = new Calculator();
         var result = calculator.Add(oneNumber);
         Assert.Equal(int.Parse(oneNumber), result);
     }
@@ -25,7 +25,6 @@ public class Part1Tests
     [InlineData("1,2")]
     public void CanAddTwoNumbers(string twoNumbers)
     {
-        var calculator = new Calculator();
         var result = calculator.Add(twoNumbers);
         Assert.Equal(3, result);
     }
@@ -34,7 +33,6 @@ public class Part1Tests
     [InlineData("3000,45")]
     public void CanAddTwoNumbersMultipleDigits(string twoNumbers)
     {
-        var calculator = new Calculator();
         var result = calculator.Add(twoNumbers);
         Assert.Equal(3045, result);
     }
@@ -43,7 +41,6 @@ public class Part1Tests
     [InlineData("1,2,3,4,5,6,7,8,9")]
     public void CanAddAnyAmountOfNumbers(string severalNumbers)
     {
-        var calculator = new Calculator();
         var result = calculator.Add(severalNumbers);
         Assert.Equal(45, result);
     }
@@ -52,7 +49,6 @@ public class Part1Tests
     [InlineData("1\n2,3", 6)]
     public void CanAddWithNewlines(string containsNewline, int expected)
     {
-        var calculator = new Calculator();
         var result = calculator.Add(containsNewline);
         Assert.Equal(expected, result);
     }
